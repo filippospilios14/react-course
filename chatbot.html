@@ -5,6 +5,8 @@
     <style>
       body {
         font-family: Arial;
+        margin-top: 0;
+        margin-bottom: 0; 
       }
 
       .send-button {
@@ -28,12 +30,17 @@
 
       .chat-input-container {
         display: flex;
+        margin-bottom: 60px;
       }
 
       .app-container {
         max-width: 600px;
         margin-left: auto;
         margin-right: auto;
+
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
       }
 
       .chat-message-user {
@@ -59,6 +66,13 @@
 
       .chat-message-profile {
         width: 45px;
+      }
+
+      .chat-messages-container {
+        flex-grow: 1;
+        margin-top: 20px;
+        overflow: scroll;
+        scrollbar-width: none;
       }
     </style>
   </head>
@@ -180,8 +194,11 @@
      }
 
      function ChatMessages({ chatMessages }) {
+        React.useEffect(() => {
+          console.log('updated');
+        });
       return (
-        <>
+        <div className="chat-messages-container">
           {chatMessages.map((chatMessage) => {
             return (
               <ChatMessage
@@ -191,7 +208,7 @@
               />
             );
           })}
-        </>
+        </div>
         );
       }
 
@@ -216,6 +233,7 @@
       }]);
       //const [chatMessages, setChatMessages] = array;
       //const chatMessages = array[0];
+      
       //const setChatMessages = array[1];
       return(
         <div className="app-container">
